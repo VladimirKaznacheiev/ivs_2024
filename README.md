@@ -5,8 +5,8 @@ Ubuntu 64bit
 
 Autori
 ------
+SMC (Small Golden Cock)
 
-Nazev tymu
 - xkalut00 Maksim Kalutski
 - xkazna01 Volodymyr Kaznacheiev
 - xmikog00 Murad Mikogaziev
