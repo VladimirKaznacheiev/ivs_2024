@@ -15,4 +15,4 @@ Nazev tymu
 Licence
 -------
 
-Tento program je poskytovan...
+General Public License 2
