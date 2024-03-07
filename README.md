@@ -2,16 +2,15 @@ Prostredi
 ---------
 
 Ubuntu 64bit
-Windows 64bit
 
 Autori
 ------
 
 Nazev tymu
-- xlogin01 jmeno prijmeni 
-- xlogin02 jmeno prijmeni 
-- xlogin03 jmeno prijmeni 
-- xlogin04 jmeno prijmeni 
+- xkalut00 Maksim Kalutski
+- xkazna01 Volodymyr Kaznacheiev
+- xmikog00 Murad Mikogaziev
+- xpushkm00 Mikhail Pushkarev
 
 Licence
 -------
