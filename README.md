@@ -5,7 +5,7 @@ Ubuntu 64bit
 
 Autori
 ------
-SMC (Small Golden Cock)
+SMC (Small Golden Cock 🐓)
 
 - xkalut00 Maksim Kalutski
 - xkazna01 Volodymyr Kaznacheiev

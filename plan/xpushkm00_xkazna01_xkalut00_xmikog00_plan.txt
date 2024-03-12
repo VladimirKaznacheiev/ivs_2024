@@ -1,0 +1,51 @@
+Milestones:
+	- 19.3.2024
+		- tests for math lib
+	- 26.3.2024
+		- math lib
+		- gui
+	- 2.4.2024
+		- connecting math lib with gui
+		- profiling
+	- 9.4.2024
+		- program documentation
+		- installer, makefile
+	- 16.4.2024
+		- user guide
+	- 23.4.2024
+		- final testing
+		- evaluation of work
+	- 25.4.2024
+		- last deadline
+	- 14.5.2024
+		- creating a presentation
+
+Tasks:
+	- xmikog00 Murad Mikogaziev
+	- xkalut00 Maksim Kalutski
+		- gui
+		- linking the math lib to the gui
+		- installer
+
+	- xkazna01 Volodymyr Kaznacheiev
+		- tests math lib
+		- math lib
+		- profiling
+		- program documentation
+		- testing of individual components
+		- Makefile
+
+	- xpushkm00 Mikhail Pushkarev
+		- presentation
+		- user documentation
+		- README.md
+		- evaluation of work
+
+	
+Communication:
+	- Discord (meetings every week)
+	- Telegram (chatting)
+
+Version control system:
+	- GitHub (https://github.com/VladimirKaznacheiev/ivs_2024)
+
