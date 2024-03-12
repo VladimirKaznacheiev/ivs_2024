@@ -1,17 +1,17 @@
-import tkinter as tk
+def add(x, y):
+    return x + y
 
 
-class Calculator:
-    def __init__(self):
-        self.window = tk.Tk()
-        self.window.geometry("400x700")
-        self.window.resizable(0, 0)
-        self.window.title("Calculator")
-
-    def run(self):
-        self.window.mainloop()
+def subtract(x, y):
+    return x - y
 
 
-if __name__ == "__main__":
-    calc = Calculator()
-    calc.run()
+def multiply(x, y):
+    return x * y
+
+
+def divide(x, y):
+    if y != 0:
+        return x / y
+    else:
+        return "Error! Division by zero."
