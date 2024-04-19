@@ -1,0 +1,5 @@
+APP_TITLE = 'Calculator'
+APP_RESOLUTION = '400x600'
+DIGITS_FONT_STYLE = ("Arial", 24, "bold")
+BUTTONS_COLOR = "#f4f6eb"
+DISPLAY_COLOR = "#e2e5d8"
