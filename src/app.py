@@ -86,9 +86,9 @@ class CalculatorApp:
             self.current_expression = result
         except ZeroDivisionError:
             self.current_expression = "Error: Division by zero"
-        # except Exception as e:
-        #     print(e)
-        #     self.current_expression = "Error"
+        except Exception as e:
+            print(e)
+            self.current_expression = "Error"
         finally:
             self.update_display()
 
