@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import font
-from math_logic import add, subtract, multiply, divide, evaluate_expression
+from math_logic import evaluate_expression
 import config
 
 
@@ -55,7 +55,7 @@ class CalculatorApp:
 
     def on_button_click(self, button_text):
 
-        if not button_text.isnumeric() and button_text not in ['.', 'AC', 'DEL', '='] and not self.operation_accetable :
+        if not button_text.isnumeric() and button_text not in ['.', 'AC', 'DEL', '='] and not self.operation_accetable:
             return
 
         if button_text in {'+', '-', '×', '÷'}:
