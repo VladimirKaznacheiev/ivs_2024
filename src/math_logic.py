@@ -3,6 +3,7 @@ import re
 
 def infix_to_postfix(expression):
     precedence = {
+        '(': 0, ')': 0,  # Parentheses have the lowest precedence for stack operations
         '!': 4,  # Factorial has the highest precedence
         '^': 3,  # Exponentiation comes next
         '√': 3,  # Square root has the same precedence as exponentiation
@@ -11,7 +12,7 @@ def infix_to_postfix(expression):
         '+': 1,  # Addition
         '-': 1  # Subtraction
     }
-    right_associative = {'^', '√'}  # Right-associative operators
+    right_associative = {'^', '√', '!'}
     stack = []
     postfix = []
     previous_token = None
@@ -19,13 +20,20 @@ def infix_to_postfix(expression):
         if re.match(r'^[\d\.]+(?:e[+\-]?\d+)?$', token):
             postfix.append(token)
         elif token in precedence:
-            if token == '-' and (previous_token is None or previous_token in "+-*/!^√"):
-                postfix.append('0')
-            while (stack and
-                   (precedence[stack[-1]] > precedence[token] or
-                    (precedence[stack[-1]] == precedence[token] and token not in right_associative))):
-                postfix.append(stack.pop())
-            stack.append(token)
+            if token == '(':
+                stack.append(token)
+            elif token == ')':
+                while stack and stack[-1] != '(':
+                    postfix.append(stack.pop())
+                stack.pop()
+            else:
+                if token == '-' and (previous_token is None or previous_token in "+-*/!^√()"):
+                    postfix.append('0')
+                while (stack and stack[-1] != '(' and
+                       (precedence[stack[-1]] > precedence[token] or
+                        (precedence[stack[-1]] == precedence[token] and token not in right_associative))):
+                    postfix.append(stack.pop())
+                stack.append(token)
         previous_token = token
     while stack:
         postfix.append(stack.pop())

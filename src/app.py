@@ -31,11 +31,11 @@ class CalculatorApp:
             self.window.grid_columnconfigure(i, weight=1)
 
         BUTTONS_LAYOUT = [
-            ('AC', 1, 0), ('DEL', 1, 1), ('', 1, 2), ('÷', 1, 3), ('!', 1, 4),
-            ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('×', 2, 3), ('^', 2, 4),
-            ('4', 3, 0), ('5', 3, 1), ('6', 3, 2), ('-', 3, 3), ('√', 3, 4),
-            ('1', 4, 0), ('2', 4, 1), ('3', 4, 2), ('+', 4, 3), ('', 4, 4),
-            ('0', 5, 0), ('.', 5, 1), ('', 5, 2), ('', 5, 3), ('=', 5, 4)
+            ('AC', 1, 0), ('DEL', 1, 1), ('(', 1, 2), (')', 1, 3), ('!', 1, 4),
+            ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('÷', 2, 3), ('^', 2, 4),
+            ('4', 3, 0), ('5', 3, 1), ('6', 3, 2), ('×', 3, 3), ('√', 3, 4),
+            ('1', 4, 0), ('2', 4, 1), ('3', 4, 2), ('-', 4, 3), ('', 4, 4),
+            ('0', 5, 0), ('.', 5, 1), ('', 5, 2), ('+', 5, 3), ('=', 5, 4)
         ]
 
         for button_text, row, col in BUTTONS_LAYOUT:
@@ -50,32 +50,38 @@ class CalculatorApp:
             buttons_frame.columnconfigure(i, weight=1)
 
     @property
-    def operation_accetable(self):
-        return not self.current_expression.strip() or self.current_expression.strip()[-1].isnumeric()
+    def operation_acceptable(self):
+        if not self.current_expression.strip():
+            return True
+        last_char = self.current_expression.strip()[-1]
+        return last_char.isdigit() or last_char == ')'
 
     def on_button_click(self, button_text):
+        if button_text in {'AC', 'DEL', '='}:
+            if button_text == 'AC':
+                self.current_expression = ""
+            elif button_text == 'DEL':
+                trimmed = self.current_expression.rstrip()
+                if trimmed and (trimmed[-1].isdigit() or trimmed[-1] in '.()'):
+                    self.current_expression = trimmed[:-1]
+                elif len(trimmed) > 1:
+                    self.current_expression = trimmed[:-3]
+            elif button_text == '=':
+                self.evaluate_expression_ui()
+        else:
+            if not button_text.isnumeric() and button_text not in ['.', '(', ')'] and not self.operation_acceptable:
+                return
 
-        if not button_text.isnumeric() and button_text not in ['.', 'AC', 'DEL', '='] and not self.operation_accetable:
-            return
-
-        if button_text in {'+', '-', '×', '÷'}:
-            print(self.operation_accetable)
-            self.current_expression += ' ' + button_text + ' '
-        elif button_text == '^':
-            self.current_expression += '^'
-        elif button_text == '√':
-            self.current_expression += ' √'
-        elif button_text == '^':
-            self.current_expression += '! '
-        elif button_text == '=':
-            self.evaluate_expression_ui()
-        elif button_text == 'AC':
-            self.current_expression = ""
-        elif button_text == 'DEL':
-            if self.current_expression.strip():
-                self.current_expression = self.current_expression.strip()[:-1]
-        elif button_text:
+            if button_text in {'+', '-', '×', '÷'}:
+                button_text = ' ' + (button_text.replace('×', '*').replace('÷', '/')) + ' '
+            elif button_text == '^':
+                button_text = '^'
+            elif button_text == '√':
+                button_text = ' √'
+            elif button_text == '!':
+                button_text = '! '
             self.current_expression += button_text
+
         self.update_display()
 
     def evaluate_expression_ui(self):
