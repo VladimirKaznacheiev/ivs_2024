@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import font
-from calc import add, subtract, multiply, divide, evaluate_expression
+from math_logic import add, subtract, multiply, divide, evaluate_expression
 import config
 
 
@@ -25,20 +25,20 @@ class CalculatorApp:
 
     def create_buttons_frame(self):
         buttons_frame = tk.Frame(self.window)
-        buttons_frame.grid(row=1, column=0, columnspan=4, sticky="nsew")
+        buttons_frame.grid(row=1, column=0, columnspan=5, sticky="nsew")
         self.window.grid_rowconfigure(1, weight=1)
         for i in range(4):
             self.window.grid_columnconfigure(i, weight=1)
 
-        buttons = [
-            ('AC', 1, 0), (' ', 1, 1), (' ', 1, 2), ('÷', 1, 3),
-            ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('×', 2, 3),
-            ('4', 3, 0), ('5', 3, 1), ('6', 3, 2), ('-', 3, 3),
-            ('1', 4, 0), ('2', 4, 1), ('3', 4, 2), ('+', 4, 3),
-            ('0', 5, 0), ('.', 5, 1), (' ', 5, 2), ('=', 5, 3)
+        BUTTONS_LAYOUT = [
+            ('AC', 1, 0), ('DEL', 1, 1), ('', 1, 2), ('÷', 1, 3), ('!', 1, 4),
+            ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('×', 2, 3), ('^', 2, 4),
+            ('4', 3, 0), ('5', 3, 1), ('6', 3, 2), ('-', 3, 3), ('√', 3, 4),
+            ('1', 4, 0), ('2', 4, 1), ('3', 4, 2), ('+', 4, 3), ('', 4, 4),
+            ('0', 5, 0), ('.', 5, 1), ('', 5, 2), ('', 5, 3), ('=', 5, 4)
         ]
 
-        for button_text, row, col in buttons:
+        for button_text, row, col in BUTTONS_LAYOUT:
             button = tk.Button(buttons_frame, text=button_text, bg=config.BUTTONS_COLOR, borderwidth=0,
                                highlightbackground=config.BUTTONS_COLOR,
                                command=lambda text=button_text: self.on_button_click(text))
@@ -46,28 +46,48 @@ class CalculatorApp:
 
         for i in range(1, 6):
             buttons_frame.rowconfigure(i, weight=1)
-        for i in range(4):
+        for i in range(5):
             buttons_frame.columnconfigure(i, weight=1)
 
+    @property
+    def operation_accetable(self):
+        return not self.current_expression.strip() or self.current_expression.strip()[-1].isnumeric()
+
     def on_button_click(self, button_text):
+
+        if not button_text.isnumeric() and button_text not in ['.', 'AC', 'DEL', '='] and not self.operation_accetable :
+            return
+
         if button_text in {'+', '-', '×', '÷'}:
+            print(self.operation_accetable)
             self.current_expression += ' ' + button_text + ' '
+        elif button_text == '^':
+            self.current_expression += '^'
+        elif button_text == '√':
+            self.current_expression += ' √'
+        elif button_text == '^':
+            self.current_expression += '! '
         elif button_text == '=':
-            self.evaluate_expression()
+            self.evaluate_expression_ui()
         elif button_text == 'AC':
             self.current_expression = ""
-        elif button_text == '.' and self.current_expression.endswith('.'):
-            return
-        else:
+        elif button_text == 'DEL':
+            if self.current_expression.strip():
+                self.current_expression = self.current_expression.strip()[:-1]
+        elif button_text:
             self.current_expression += button_text
         self.update_display()
 
-    def evaluate_expression(self):
+    def evaluate_expression_ui(self):
         expression = self.current_expression.replace('×', '*').replace('÷', '/')
+        print(expression)
         try:
             result = str(evaluate_expression(expression))
             self.current_expression = result
+        except ZeroDivisionError:
+            self.current_expression = "Error: Division by zero"
         except Exception as e:
+            print(e)
             self.current_expression = "Error"
         finally:
             self.update_display()
