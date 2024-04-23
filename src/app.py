@@ -5,7 +5,19 @@ import config
 
 
 class CalculatorApp:
+    """ A simple calculator application using tkinter.
+
+    This class handles the creation of the calculator's GUI, including the display and buttons,
+    as well as the logic for button clicks and expression evaluation.
+
+    Attributes:
+        display (tk.Entry): The tkinter Entry widget used for displaying the current expression.
+        window (tk.Tk): The main tkinter window of the application.
+        current_expression (str): The current mathematical expression entered by the user.
+    """
+
     def __init__(self):
+        """ Initialize the CalculatorApp with a main window and layout configurations. """
         self.display = None
         self.window = tk.Tk()
         self.window.title(config.APP_TITLE)
@@ -15,6 +27,7 @@ class CalculatorApp:
         self.create_buttons_frame()
 
     def create_display_frame(self):
+        """ Creates the display area where the calculation expression is shown. """
         self.display = tk.Entry(self.window, font=config.DIGITS_FONT_STYLE, bg=config.DISPLAY_COLOR, justify=tk.RIGHT,
                                 borderwidth=0)
         self.display.grid(row=0, column=0, columnspan=4, sticky="nsew")
@@ -24,6 +37,7 @@ class CalculatorApp:
             self.window.grid_columnconfigure(i, weight=1)
 
     def create_buttons_frame(self):
+        """ Creates the button layout for the calculator. """
         buttons_frame = tk.Frame(self.window)
         buttons_frame.grid(row=1, column=0, columnspan=5, sticky="nsew")
         self.window.grid_rowconfigure(1, weight=1)
@@ -31,6 +45,8 @@ class CalculatorApp:
             self.window.grid_columnconfigure(i, weight=1)
 
         BUTTONS_LAYOUT = [
+            # (Button label, row, column)
+            # Defines the layout and properties of each button
             ('AC', 1, 0), ('DEL', 1, 1), ('(', 1, 2), (')', 1, 3), ('!', 1, 4),
             ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('÷', 2, 3), ('^', 2, 4),
             ('4', 3, 0), ('5', 3, 1), ('6', 3, 2), ('×', 3, 3), ('√', 3, 4),
@@ -51,12 +67,14 @@ class CalculatorApp:
 
     @property
     def operation_acceptable(self):
+        """ Checks if the last character of the current expression allows an operation. """
         if not self.current_expression.strip():
             return True
         last_char = self.current_expression.strip()[-1]
         return last_char.isdigit() or last_char == ')'
 
     def on_button_click(self, button_text):
+        """ Handles the logic for when a button is clicked. """
         if button_text in {'AC', 'DEL', '='}:
             if button_text == 'AC':
                 self.current_expression = ""
@@ -85,6 +103,7 @@ class CalculatorApp:
         self.update_display()
 
     def evaluate_expression_ui(self):
+        """ Evaluates the mathematical expression entered by the user. """
         expression = self.current_expression.replace('×', '*').replace('÷', '/')
         print(expression)
         try:
@@ -99,10 +118,13 @@ class CalculatorApp:
             self.update_display()
 
     def update_display(self):
+        """ Updates the calculator's display with the current expression. """
+
         self.display.delete(0, tk.END)
         self.display.insert(0, self.current_expression)
 
     def run(self):
+        """ Starts the calculator application. """
         self.window.mainloop()
 
 
