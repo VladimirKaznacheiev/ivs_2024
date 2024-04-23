@@ -86,7 +86,7 @@ def evaluate_postfix(postfix):
 
 
 def split_by_expression_parts(expression):
-    parts = re.findall(r'[+\-*/^√!]|[\d\.]+(?:e[+\-]?\d+)?', expression)
+    parts = re.findall(r'[+\-*/^√!()]|\d+\.?\d*(?:e[+\-]?\d+)?', expression)
     return parts
 
 
