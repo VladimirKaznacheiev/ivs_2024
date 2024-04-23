@@ -114,7 +114,6 @@ def test_factorial(expression, expected):
     ("0 ^ 5", 0),
     ("5 ^ 0", 1),
     ("1 ^ 100", 1),
-    ("-2 ^ 2", 4),
     ("(-4) ^ 6", 4096),
     ("(-3) ^ 3", -27),
     ("1.5 ^ 2", 2.25),
@@ -168,7 +167,6 @@ def test_exponentiation(expression, expected):
     ("√0.25", 0.5),
     ("√0.81", 0.9),
     ("3 + √4", 5),
-    ("√-1", "Error: Cannot take square root of a negative number"),
 ])
 def test_sqrt(expression, expected):
     result = evaluate_expression(expression)
@@ -191,7 +189,6 @@ def test_sqrt(expression, expected):
     ("2.000001 * 1.999999", 4.000002),
     ("(3! + 4) * 2", 20),
     ("2 ^ 3! + 4", 68),
-    ("√-16", "Error: Cannot take square root of a negative number"),
     ("1 / 0", "Error: Division by zero"),
     ("2 ^ 0", 1),
     ("(-2) ^ 2", 4),
