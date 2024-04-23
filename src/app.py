@@ -50,16 +50,16 @@ class CalculatorApp:
             buttons_frame.columnconfigure(i, weight=1)
 
     @property
-    def operation_accetable(self):
+    def operation_acceptable(self):
         return not self.current_expression.strip() or self.current_expression.strip()[-1].isnumeric()
 
     def on_button_click(self, button_text):
 
-        if not button_text.isnumeric() and button_text not in ['.', 'AC', 'DEL', '='] and not self.operation_accetable :
+        if not button_text.isnumeric() and button_text not in ['.', 'AC', 'DEL', '='] and not self.operation_acceptable :
             return
 
         if button_text in {'+', '-', '×', '÷'}:
-            print(self.operation_accetable)
+            print(self.operation_acceptable)
             self.current_expression += ' ' + button_text + ' '
         elif button_text == '^':
             self.current_expression += '^'
