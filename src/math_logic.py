@@ -141,26 +141,78 @@ def evaluate_expression(expression):
 
 
 def plus(nums):
+    """Calculate the sum of a list of numbers.
+
+    Args:
+        nums (list): List of numbers to be summed.
+
+    Returns:
+        float: The sum of the numbers.
+    """
     return sum(nums)
 
 
 def minus(a, b):
+    """Subtract b from a.
+
+    Args:
+        a (float): The number to be subtracted from.
+        b (float): The number to subtract.
+
+    Returns:
+        float: The result of the subtraction.
+    """
     return a - b
 
 
 def mul(a, b):
+    """Multiply two numbers.
+
+    Args:
+        a (float): The first number.
+        b (float): The second number.
+
+    Returns:
+        float: The result of the multiplication.
+    """
     return a * b
 
 
 def div(a, b):
+    """Divide a by b.
+
+    Args:
+        a (float): The dividend.
+        b (float): The divisor.
+
+    Returns:
+        float: The result of the division.
+    """
     return a / b
 
 
 def power(a, b):
+    """Raise a to the power of b.
+
+    Args:
+        a (float): The base.
+        b (float): The exponent.
+
+    Returns:
+        float: The result of the exponentiation.
+    """
     return a ** b
 
 
 def factorial(n):
+    """Calculate the factorial of a non-negative integer.
+
+    Args:
+        n (int): The non-negative integer.
+
+    Returns:
+        int: The factorial of n.
+    """
     result = 1
     for i in range(1, int(n) + 1):
         result *= i
@@ -168,8 +220,25 @@ def factorial(n):
 
 
 def root(a, n=2):
+    """Calculate the nth root of a.
+
+    Args:
+        a (float): The number.
+        n (float, optional): The degree of the root. Defaults to 2.
+
+    Returns:
+        float: The nth root of a.
+    """
     return a ** (1 / n)
 
 
 def percent(a):
+    """Convert a percentage to its decimal equivalent.
+
+    Args:
+        a (float): The percentage value.
+
+    Returns:
+        float: The decimal equivalent of the percentage.
+    """
     return a / 100
