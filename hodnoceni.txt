@@ -1,4 +1,4 @@
-xlogin01 100 (základ GUI a základní mat. operace)
-xlogin02 100 (pokročilé mat. operace)
-xlogin03 90 (profiling, instalátor)
-xlogin04 110 (testy, dokumentace)
+xmikog00 133 (math, profiling)
+xkalut00 133 (testy, GUI, math, docs, makefile)
+xkazna01 134 (math, GUI, instalator)
+xpushkm00 0 ()
