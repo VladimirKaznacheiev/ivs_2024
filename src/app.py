@@ -39,6 +39,7 @@ class CalculatorApp:
         self.current_expression = ""
         self.create_display_frame()
         self.create_buttons_frame()
+        self.bind_keyboard_events()
 
     def create_display_frame(self):
         """ Creates the display area where the calculation expression is shown. """
@@ -64,7 +65,7 @@ class CalculatorApp:
             ('AC', 1, 0), ('DEL', 1, 1), ('(', 1, 2), (')', 1, 3), ('!', 1, 4),
             ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('÷', 2, 3), ('^', 2, 4),
             ('4', 3, 0), ('5', 3, 1), ('6', 3, 2), ('×', 3, 3), ('√', 3, 4),
-            ('1', 4, 0), ('2', 4, 1), ('3', 4, 2), ('-', 4, 3), ('', 4, 4),
+            ('1', 4, 0), ('2', 4, 1), ('3', 4, 2), ('-', 4, 3), ('%', 4, 4),
             ('0', 5, 0), ('.', 5, 1), ('', 5, 2), ('+', 5, 3), ('=', 5, 4)
         ]
 
@@ -78,6 +79,11 @@ class CalculatorApp:
             buttons_frame.rowconfigure(i, weight=1)
         for i in range(5):
             buttons_frame.columnconfigure(i, weight=1)
+
+    def bind_keyboard_events(self):
+        # Bind keyboard events
+        for key, button_text in config.KEYBOARD_BINDINGS.items():
+            self.window.bind(key, lambda event, text=button_text: self.on_button_click(text))
 
     @property
     def operation_acceptable(self):
@@ -119,7 +125,6 @@ class CalculatorApp:
     def evaluate_expression_ui(self):
         """ Evaluates the mathematical expression entered by the user. """
         expression = self.current_expression.replace('×', '*').replace('÷', '/')
-        print(expression)
         try:
             result = str(evaluate_expression(expression))
             self.current_expression = result
