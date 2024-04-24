@@ -1,1 +1,4 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+In our project retrospective, it's clear that we underestimated deadlines, leading to a rush in implementation during the final weeks. 
+Instead of adhering to our planned task division, team members worked on tasks randomly without clear allocation.
+
+Moving forward, we need to improve our deadline estimation and ensure clearer task distribution to avoid last-minute rushes and inefficiencies.
