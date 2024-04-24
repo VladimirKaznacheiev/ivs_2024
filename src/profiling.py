@@ -3,6 +3,17 @@ import math_logic as ml
 
 
 def calculate_sample_std_deviation(nums):
+    """Calculate the sample standard deviation of a list of numbers.
+
+    Args:
+        nums (list): List of numbers.
+
+    Returns:
+        float: The sample standard deviation.
+
+    Raises:
+        ValueError: If less than two numbers are provided.
+    """
     n = len(nums)
     if n < 2:
         raise ValueError("At least two numbers are required for calculating sample standard deviation.")
@@ -14,6 +25,11 @@ def calculate_sample_std_deviation(nums):
 
 
 def read_input_numbers():
+    """Read numbers from standard input.
+
+    Returns:
+        list: List of numbers read from input.
+    """
     numbers = []
     try:
         for line in iter(input, ''):
