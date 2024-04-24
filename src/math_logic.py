@@ -1,3 +1,15 @@
+"""
+IVS Project 2 - Golden Calculator
+
+@brief: This module provides functions for converting and evaluating mathematical expressions
+in infix and postfix notation.
+
+@authors: Maksim Kalutski (xkalut00)
+          Volodymyr Kaznacheiev (xkazna01)
+@file math_logic.py
+@date 2024-24-04
+"""
+
 import re
 
 

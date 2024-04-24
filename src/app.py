@@ -1,3 +1,17 @@
+"""
+IVS Project 2 - Golden Calculator
+
+@brief: Contains the main class CalculatorApp, which is responsible for creating the GUI
+of the calculator and handling the logic for button clicks and expression evaluation.
+The CalculatorApp class uses the tkinter library to create the GUI elements, such as
+the display and buttons, and defines the layout of the calculator.
+
+@authors: Maksim Kalutski (xkalut00)
+          Volodymyr Kaznacheiev (xkazna01)
+@file app.py
+@date 2024-24-04
+"""
+
 import tkinter as tk
 from tkinter import font
 from math_logic import evaluate_expression
