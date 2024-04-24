@@ -50,33 +50,31 @@ def evaluate_postfix(postfix):
             b = stack.pop()
             if char == '+':
                 a = stack.pop()
-                result = a + b
+                result = plus([a, b])
             elif char == '-':
                 a = stack.pop()
-                result = a - b
+                result = minus(a, b)
             elif char == '*':
                 a = stack.pop()
-                result = a * b
+                result = mul(a, b)
             elif char == '/':
                 a = stack.pop()
                 if b == 0:
                     return "Error: Division by zero"
-                result = a / b
+                result = div(a, b)
             elif char == '^':
                 a = stack.pop()
-                result = a ** b
+                result = power(a, b)
             elif char == '!':
                 if not b.is_integer() or b < 0:
                     return "Error: Factorial requires a non-negative integer"
-                result = 1
-                for i in range(1, int(b) + 1):
-                    result *= i
+                result = factorial(b)
             elif char == '√':
                 if b < 0:
                     return "Error: Cannot take square root of a negative number"
-                result = b ** 0.5
+                result = squareroot(b)
             elif char == '%':
-                result = b / 100
+                result = percent(b)
             stack.append(result)
     result = stack.pop()
     if len(stack) != 0:
@@ -99,12 +97,36 @@ def evaluate_expression(expression):
     return evaluate_postfix(postfix)
 
 
-def calculate_sample_std_deviation(numbers):
-    n = len(numbers)
-    if n < 2:
-        raise ValueError("At least two numbers are required for calculating sample standard deviation.")
+def plus(nums):
+    return sum(nums)
 
-    mean = sum(numbers) / n
-    variance = sum((x - mean) ** 2 for x in numbers) / (n - 1)
-    std_deviation = variance ** 0.5
-    return std_deviation
+
+def minus(a, b):
+    return a - b
+
+
+def mul(a, b):
+    return a * b
+
+
+def div(a, b):
+    return a / b
+
+
+def power(a, b):
+    return a ** b
+
+
+def factorial(n):
+    result = 1
+    for i in range(1, int(n) + 1):
+        result *= i
+    return result
+
+
+def squareroot(a):
+    return a ** 0.5
+
+
+def percent(a):
+    return a / 100
