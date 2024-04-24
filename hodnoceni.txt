@@ -1,4 +1,4 @@
-xmikog00 133 (math, profiling)
-xkalut00 133 (testy, GUI, math, docs, makefile)
-xkazna01 134 (math, GUI, instalator)
+xmikog00 125 (math, profiling)
+xkalut00 125 (testy, GUI, math, docs, makefile)
+xkazna01 150 (math, GUI, instalator)
 xpushkm00 0 ()
