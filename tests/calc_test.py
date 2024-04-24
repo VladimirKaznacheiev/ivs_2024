@@ -1,9 +1,22 @@
+"""
+IVS Project 2 - Golden Calculator
+
+@brief: Test module for the math_logic module. Contains test cases for the basic arithmetic
+operations, factorial, exponentiation, and square root functions.
+
+@author: Maksim Kalutski (xkalut00)
+
+@file calc_test.py
+@date 2024-22-04
+"""
+
 import pytest
 import math
 
 from src.math_logic import evaluate_expression
 
 
+# Tests addition operations with multiple test cases using pytest parametrization.
 @pytest.mark.parametrize("expression, expected", [
     ("1 + 2", 3),
     ("-1 + 1", 0),
@@ -21,6 +34,8 @@ def test_add(expression, expected):
     result = evaluate_expression(expression)
     assert result == expected, f"Expected {expected}, but got {result}"
 
+
+# Tests subtraction operations with multiple test cases using pytest parametrization.
 @pytest.mark.parametrize("expression, expected", [
     ("2 - 1", 1),
     ("1 - 2", -1),
@@ -43,6 +58,7 @@ def test_subtract(expression, expected):
     assert result == expected, f"Expected {expected}, but got {result}"
 
 
+# Tests multiplication operations with multiple test cases using pytest parametrization.
 @pytest.mark.parametrize("expression, expected", [
     ("2 * 3", 6),
     ("0 * 5", 0),
@@ -64,6 +80,7 @@ def test_multiply(expression, expected):
     assert result == expected, f"Expected {expected}, but got {result}"
 
 
+# Tests division operations with error handling for division by zero.
 @pytest.mark.parametrize("expression, expected", [
     ("10 / 2", 5),
     ("9 / 3", 3),
@@ -85,6 +102,7 @@ def test_divide(expression, expected):
     assert result == expected, f"Expected {expected}, but got {result}"
 
 
+# Tests factorial calculations and combinations with addition and multiplication.
 @pytest.mark.parametrize("expression, expected", [
     ("0!", 1),
     ("5!", 120),
@@ -108,6 +126,7 @@ def test_factorial(expression, expected):
         assert result == expected, f"Failed on extended factorial test with expression: {expression}"
 
 
+# Tests exponentiation with nested operations and varying bases and exponents.
 @pytest.mark.parametrize("expression, expected", [
     ("2 ^ 3", 8),
     ("3 ^ 4", 81),
@@ -152,6 +171,7 @@ def test_exponentiation(expression, expected):
         assert result == pytest.approx(expected), f"Failed on {expression}"
 
 
+# Tests square root operations and their accuracy with pytest approximations.
 @pytest.mark.parametrize("expression, expected", [
     ("2√4", 2),
     ("2√9", 3),
@@ -176,6 +196,7 @@ def test_sqrt(expression, expected):
         assert result == expected, f"Failed on sqrt({expression})"
 
 
+# Tests complex expressions involving multiple operations including parentheses and mixed operations.
 @pytest.mark.parametrize("expression, expected", [
     ("(1 + 2) * (3 + 4)", 21),
     ("1 + 2 * 3 - 4 / 2", 5),
@@ -195,7 +216,7 @@ def test_sqrt(expression, expected):
     ("(-2) ^ 3", -8),
     ("8 ^ (1/3)", 2),
     ("9 ^ (1/2)", 3),
-    ("27 ^ (-1/3)", 1/3),
+    ("27 ^ (-1/3)", 1 / 3),
     ("16 ^ 0.5", 4),
 ])
 def test_complex_expressions(expression, expected):
