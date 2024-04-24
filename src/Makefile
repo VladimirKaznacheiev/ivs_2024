@@ -20,8 +20,6 @@ clean:
 	rm -rf ../profiling/__pycache__
 	rm -rf ../src/__pycache__
 	rm -rf ../src/.pytest_cache
-	rm -rf ../src/dist
-	rm -rf ../src/build
 
 test: ../tests/calc_test.py
 	pytest ../tests/calc_test.py
