@@ -97,3 +97,14 @@ def evaluate_expression(expression):
     expression = split_by_expression_parts(expression)
     postfix = infix_to_postfix(expression)
     return evaluate_postfix(postfix)
+
+
+def calculate_sample_std_deviation(numbers):
+    n = len(numbers)
+    if n < 2:
+        raise ValueError("At least two numbers are required for calculating sample standard deviation.")
+
+    mean = sum(numbers) / n
+    variance = sum((x - mean) ** 2 for x in numbers) / (n - 1)
+    std_deviation = variance ** 0.5
+    return std_deviation
