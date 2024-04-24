@@ -153,20 +153,20 @@ def test_exponentiation(expression, expected):
 
 
 @pytest.mark.parametrize("expression, expected", [
-    ("√4", 2),
-    ("√9", 3),
-    ("√16", 4),
-    ("√2", math.sqrt(2)),
-    ("√3", math.sqrt(3)),
-    ("√5", math.sqrt(5)),
-    ("√8", math.sqrt(8)),
-    ("√10000", 100),
-    ("√1000000", 1000),
-    ("√0", 0),
-    ("√1", 1),
-    ("√0.25", 0.5),
-    ("√0.81", 0.9),
-    ("3 + √4", 5),
+    ("2√4", 2),
+    ("2√9", 3),
+    ("2√16", 4),
+    ("2√2", math.sqrt(2)),
+    ("2√3", math.sqrt(3)),
+    ("2√5", math.sqrt(5)),
+    ("2√8", math.sqrt(8)),
+    ("2√10000", 100),
+    ("2√1000000", 1000),
+    ("2√0", 0),
+    ("2√1", 1),
+    ("2√0.25", 0.5),
+    ("2√0.81", 0.9),
+    ("3 + 2√4", 5),
 ])
 def test_sqrt(expression, expected):
     result = evaluate_expression(expression)
