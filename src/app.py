@@ -16,6 +16,7 @@ import tkinter as tk
 from tkinter import font
 from math_logic import evaluate_expression
 import config
+from tkinter import messagebox
 
 
 class CalculatorApp:
@@ -40,6 +41,16 @@ class CalculatorApp:
         self.create_display_frame()
         self.create_buttons_frame()
         self.bind_keyboard_events()
+    
+    def show_help(self):
+        messagebox.showinfo("Help", "Calculator Usage Instructions:\n\n"
+                                    "Use the numeric keys to enter values.\n"
+                                    "Press 'AC' to clear the display.\n"
+                                    "Press 'DEL' to delete the last entry.\n"
+                                    "To use the square root, press '√' followed by the number (e.g., '√9').\n"
+                                    "To calculate an nth root, type the degree followed by '√' and the number (e.g., '3√8').\n"
+                                    "If no number precedes '√', it defaults to square root.\n"
+                            )
 
     def create_display_frame(self):
         """ Creates the display area where the calculation expression is shown. """
@@ -62,11 +73,11 @@ class CalculatorApp:
         BUTTONS_LAYOUT = [
             # (Button label, row, column)
             # Defines the layout and properties of each button
-            ('AC', 1, 0), ('DEL', 1, 1), ('(', 1, 2), (')', 1, 3), ('!', 1, 4),
-            ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('÷', 2, 3), ('^', 2, 4),
-            ('4', 3, 0), ('5', 3, 1), ('6', 3, 2), ('×', 3, 3), ('√', 3, 4),
-            ('1', 4, 0), ('2', 4, 1), ('3', 4, 2), ('-', 4, 3), ('%', 4, 4),
-            ('0', 5, 0), ('.', 5, 1), ('', 5, 2), ('+', 5, 3), ('=', 5, 4)
+            ('AC', 1, 0), ('DEL', 1, 1), ('(', 1, 2), (')', 1, 3), ('?', 1, 4),
+            ('7', 2, 0), ('8', 2, 1), ('9', 2, 2), ('÷', 2, 3), ('!', 2, 4),
+            ('4', 3, 0), ('5', 3, 1), ('6', 3, 2), ('×', 3, 3), ('^', 3, 4),
+            ('1', 4, 0), ('2', 4, 1), ('3', 4, 2), ('-', 4, 3), ('√', 4, 4),
+            ('0', 5, 0), ('.', 5, 1), ('%', 5, 2), ('+', 5, 3), ('=', 5, 4)
         ]
 
         for button_text, row, col in BUTTONS_LAYOUT:
@@ -107,15 +118,17 @@ class CalculatorApp:
             elif button_text == '=':
                 self.evaluate_expression_ui()
         else:
-            if not button_text.isnumeric() and button_text not in ['.', '(', ')'] and not self.operation_acceptable:
+            if not button_text.isnumeric() and button_text not in ['.', '(', ')', '√'] and not self.operation_acceptable:
                 return
 
             if button_text in {'+', '-', '×', '÷'}:
                 button_text = ' ' + (button_text.replace('×', '*').replace('÷', '/')) + ' '
-            elif button_text == '^':
-                button_text = '^'
             elif button_text == '√':
-                button_text = ' √'
+                if not self.current_expression.strip() or not self.current_expression.strip()[-1].isdigit():
+                    button_text = '2'+button_text
+            elif button_text == '?':
+                self.show_help()
+                return
             elif button_text == '!':
                 button_text = '! '
             self.current_expression += button_text

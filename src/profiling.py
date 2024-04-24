@@ -9,7 +9,7 @@ def calculate_sample_std_deviation(nums):
 
     mean = ml.div(ml.plus(nums), n)
     variance = ml.div(ml.plus(ml.power(ml.minus(x, mean), 2) for x in nums), ml.minus(n, 1))
-    std_deviation = ml.squareroot(variance)
+    std_deviation = ml.root(variance)
     return std_deviation
 
 

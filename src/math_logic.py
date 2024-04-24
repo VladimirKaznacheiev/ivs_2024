@@ -102,7 +102,11 @@ def evaluate_postfix(postfix):
             elif char == '√':
                 if b < 0:
                     return "Error: Cannot take square root of a negative number"
-                result = squareroot(b)
+                try:
+                    a = stack.pop()
+                    result = root(b, a)
+                except IndexError:
+                    result = root(b)
             elif char == '%':
                 result = percent(b)
             stack.append(result)
@@ -163,8 +167,8 @@ def factorial(n):
     return result
 
 
-def squareroot(a):
-    return a ** 0.5
+def root(a, n=2):
+    return a ** (1 / n)
 
 
 def percent(a):
