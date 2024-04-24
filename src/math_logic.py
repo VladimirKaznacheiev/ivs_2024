@@ -10,7 +10,8 @@ def infix_to_postfix(expression):
         '*': 2,  # Multiplication
         '/': 2,  # Division
         '+': 1,  # Addition
-        '-': 1  # Subtraction
+        '-': 1,  # Subtraction
+        '%': 1   # Percent
     }
     right_associative = {'^', '√', '!'}
     stack = []
@@ -27,7 +28,7 @@ def infix_to_postfix(expression):
                     postfix.append(stack.pop())
                 stack.pop()
             else:
-                if token == '-' and (previous_token is None or previous_token in "+-*/!^√()"):
+                if token == '-' and (previous_token is None or previous_token in "+-*/!^√()%"):
                     postfix.append('0')
                 while (stack and stack[-1] != '(' and
                        (precedence[stack[-1]] > precedence[token] or
@@ -74,6 +75,8 @@ def evaluate_postfix(postfix):
                 if b < 0:
                     return "Error: Cannot take square root of a negative number"
                 result = b ** 0.5
+            elif char == '%':
+                result = b / 100  # Convert percent to fraction
             stack.append(result)
     result = stack.pop()
     if len(stack) != 0:
@@ -86,7 +89,7 @@ def evaluate_postfix(postfix):
 
 
 def split_by_expression_parts(expression):
-    parts = re.findall(r'[+\-*/^√!()]|\d+\.?\d*(?:e[+\-]?\d+)?', expression)
+    parts = re.findall(r'[+\-*/^√!%()]|\d+\.?\d*(?:e[+\-]?\d+)?', expression)
     return parts
 
 
