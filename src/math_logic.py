@@ -75,6 +75,8 @@ def evaluate_postfix(postfix):
                 if b < 0:
                     return "Error: Cannot take square root of a negative number"
                 result = b ** 0.5
+            elif char == '%':
+                result = b / 100
             stack.append(result)
     result = stack.pop()
     if len(stack) != 0:
