@@ -1,7 +1,28 @@
+"""
+IVS Project 2 - Golden Calculator
+
+@brief: This module provides functions for converting and evaluating mathematical expressions
+in infix and postfix notation.
+
+@authors: Maksim Kalutski (xkalut00)
+          Volodymyr Kaznacheiev (xkazna01)
+@file math_logic.py
+@date 2024-24-04
+"""
+
 import re
 
 
 def infix_to_postfix(expression):
+    """ Converts an infix expression (standard arithmetic form) to postfix (RPN).
+
+    Args:
+        expression (str): The infix mathematical expression to convert.
+
+    Returns:
+        list: A list of tokens representing the postfix expression.
+    """
+
     precedence = {
         '(': 0, ')': 0,  # Parentheses have the lowest precedence for stack operations
         '!': 4,  # Factorial has the highest precedence
@@ -42,6 +63,15 @@ def infix_to_postfix(expression):
 
 
 def evaluate_postfix(postfix):
+    """ Evaluates a postfix expression.
+
+    Args:
+        postfix (list): The postfix expression as a list of tokens.
+
+    Returns:
+        float or str: The result of the evaluation or an error message.
+    """
+
     stack = []
     for char in postfix:
         if re.match(r'^[\d\.]+(?:e[+\-]?\d+)?$', char):
@@ -92,6 +122,15 @@ def split_by_expression_parts(expression):
 
 
 def evaluate_expression(expression):
+    """ Evaluates a mathematical expression in infix format.
+
+    Args:
+        expression (str): The infix expression to evaluate.
+
+    Returns:
+        float or str: The result of the expression or an error message.
+    """
+
     expression = split_by_expression_parts(expression)
     postfix = infix_to_postfix(expression)
     return evaluate_postfix(postfix)
