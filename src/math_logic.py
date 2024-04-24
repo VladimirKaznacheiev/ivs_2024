@@ -6,6 +6,7 @@ in infix and postfix notation.
 
 @authors: Maksim Kalutski (xkalut00)
           Volodymyr Kaznacheiev (xkazna01)
+          Murad Mikogaziev (xmikog00)
 @file math_logic.py
 @date 2024-24-04
 """

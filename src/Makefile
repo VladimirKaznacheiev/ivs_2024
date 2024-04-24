@@ -1,3 +1,11 @@
+# IVS Project 2 - Golden Calculator
+#
+# @brief: Makefile for the project
+#
+# @author: Murad Mikogaziev (xmikog00)
+# @file Makefile
+# @date 2024-22-04
+
 ARCHIVE = xpushkm00_xkazna01_xkalut00_xmikog00
 
 all:
