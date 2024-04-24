@@ -1,3 +1,13 @@
+"""
+IVS Project 2 - Golden Calculator
+
+@brief: This module provides profiling for Golden Calculator
+
+@authors: Murad Mikogaziev (xmikog00)
+@file profiling.py
+@date 2024-24-04
+"""
+
 import cProfile
 import math_logic as ml
 
